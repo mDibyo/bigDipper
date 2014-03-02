@@ -55,9 +55,7 @@ var ursaMajor = {
    * });
    */
   Course: function (config) {
-    for (var attr in config) {
-      this[attr] = config[attr];
-    }
+    this.__init(config);
   },
 
   /**
@@ -140,5 +138,18 @@ var ursaMajor = {
       this[attr] = config[attr];
     }
   },
+
+}
+
+
+ursaMajor.Course.prototype = {
+  
+  __init: function(config) {
+    for (var attr in config) {
+      this[attr] = config[attr];
+    }
+  },
+
+
 
 }
