@@ -10,10 +10,19 @@ function ursaMajor(container, width, height) {
 
 }
 
+/**
+ * Global variables which will be used throughout the program and can be changed
+ * at will to change the whole program.
+ */
+var TEXTFONT = "Calibri",
+  BGCOLOR = "white",
+  TEXTCOLOR = "#8A8A8A",
+  TEXTSIZE = 12,
+  BORDERCOLOR = "#BFBFBF";
+
 // var ursaMajor = {};
 
 var ursaMajor = {
-
 
   /**
    * Course constructor. Course represents each course. They are represented as
@@ -148,8 +157,24 @@ ursaMajor.Course.prototype = {
     for (var attr in config) {
       this[attr] = config[attr];
     }
+    this.width = 40;
+    this.height = 10;
+    // Graphic elements
+    this._box = new Kinetic.Rect({
+      width: this.width,
+      height: this.height,
+      fill: BGCOLOR,
+      stroke: BORDERCOLOR,
+      strokeWidth: 3,
+    })
+    this._text = new Kinetic.Text({
+      text: this.abbrName,
+      align: 'center',
+      fontFamily: TEXTFONT,
+      fill: TEXTCOLOR,
+      fontSize: TEXTSIZE,
+      height: this.height,
+    })
   },
-
-
 
 }
