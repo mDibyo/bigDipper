@@ -31,6 +31,7 @@ var ursaMajor = {
    * they satisfy a requirement and can be accessed on the app to display this info.
    * @constructor
    * @memberof ursaMajor
+   * @param {Object} config
    * @param {String} [config.id] unique id of the course, can be full course title :: [COMPSCI.169]
    * @param {String} [config.abbrName] the name that is displayed on the draggable coursetile :: [CS 169]
    * @param {String} [config.courseTitle] the title of the course with prefixes and suffixes [Software Engineering]
@@ -68,6 +69,22 @@ var ursaMajor = {
   },
 
   /**
+   * Pile constructor. Pile represents the courses that will satisfy a particular
+   * requirement in the SubPath/Path.
+   * In the interface, it is represented as a list of courses on the left side ordered
+   * by popularity, difficulty level or some other metric stored in the ratings object
+   * of each course. Each course can then be dragged from the Pile into the corresponding
+   * area in the SubPath/Path.
+   * @param {Object} config
+   * @param {Array} [config.courses] the list of courses in the Pile arranged in the order of preference
+   */
+  Pile: function(config) {
+    for (var attr in config) {
+      this[attr] = config[attr];
+    }
+  },
+
+  /**
    * SubPath constructor. SubPath represents a major/minor that a student wants
    * to complete. It keeps track of the different requirements (university, college, 
    * major, unit). It contains courses as its members. It has different four-year
@@ -79,6 +96,7 @@ var ursaMajor = {
    * Path tree. It can give access to different Tracks through a separate interface.
    * @constructor
    * @memberof ursaMajor
+   * @param {Object} config 
    * @param {String} [config.id] unique id of the subPath
    * @param {String} [config.displayName] the name that is displayed as the path name when it
    * the only member of a Path
@@ -121,6 +139,7 @@ var ursaMajor = {
    * create new Tracks.
    * In the interface, the paths are represented as the root from which SubPath branches
    * originate.
+   * @param {Object} config
    * @param {String} [config.displayName] the name that is displayed
    * @param {Array}  [config.subPaths] the SubPath objects that make up this path
    * @param {Number} [config.unitCount] the number of units in all the courses of this Path
@@ -138,6 +157,7 @@ var ursaMajor = {
    * courses can be dropped. The boxes might be color-coded to signify healthy/unhealthy
    * unit counts or easy/hard courseloads (if course difficulty levels are available
    * from other users of the site.
+   * @param {Object} config
    * @param {Array}  [config.semesters] the semesters that make up the four years
    * @param {Array}  [config.semesters[].courses] the courses taken/chosen for each semester
    * @param {Number} [config.semesters.unitCount] the number of units taken in each semester
