@@ -78,10 +78,8 @@ var ursaMajor = {
    * @param {Object} config
    * @param {Array} [config.courses] the list of courses in the Pile arranged in the order of preference
    */
-  Pile: function(config) {
-    for (var attr in config) {
-      this[attr] = config[attr];
-    }
+  Pile: function (config) {
+    this.__init(config);
   },
 
   /**
@@ -176,6 +174,8 @@ ursaMajor.Course.prototype = {
   /**
    * __init function initializes this Course with the course that it holds and creates 
    * the corresponding visual elements.
+   * @param {Object} config the set of attributes that represent the course
+   * @return {Kinetic.Group} the visual representation of the course in the canvas
    */
   __init: function(config) {
     for (var attr in config) {
@@ -183,15 +183,15 @@ ursaMajor.Course.prototype = {
     }
     this.width = 40;
     this.height = 10;
-    this.layer = new Kinetic.Layer();
     // Graphic elements
+    this._layer = null;
     this._box = new Kinetic.Rect({
       width: this.width,
       height: this.height,
       fill: BGCOLOR,
       stroke: BORDERCOLOR,
       strokeWidth: 3,
-    })
+    });
     this._text = new Kinetic.Text({
       text: this.abbrName,
       align: 'center',
@@ -202,9 +202,10 @@ ursaMajor.Course.prototype = {
     });
     this._representation = new Kinetic.Group({
       draggable: true,
-  });
+    });
     this._representation.add(this._box);
     this._representation.add(this._text);
+    return this._representation;
   },
 
   /**
@@ -212,7 +213,6 @@ ursaMajor.Course.prototype = {
    * added to the interface on the next redraw of the canvas.
    * @param {Number} x the x-coordinate of the course box in the canvas
    * @param  {Number} y the y-coordinate of the course box in the canvas
-   * @return {[type]}   [description]
    */
   render: function (x, y) {
     this._representation.position({
@@ -220,6 +220,64 @@ ursaMajor.Course.prototype = {
       y: y,
     });
     this.layer.add(this._representation);
-  }
+  },
+
+}
+
+
+ursaMajor.Pile.prototype = {
+
+  /**
+   * __init function initializes the Pile with the courses that it should contain. It also
+   * creates the corresponding pile visual element (with courses arranged)
+   * @param  {Object} config the set of courses and other attributes that comprise the Pile
+   * @return {Kinetic.Group} the visual representation of the Pile in the canvas
+   */
+  __init: function (config) {
+    for (var attr in config) {
+      this[attr] = config[attr];
+    }
+    this.width = 40;
+    this.height = 120;
+    // Graphic elements
+    this._layer = null;
+    this._box = new Kinetic.Rect({
+      width: this.width,
+      height: this.height,
+      fill: BGCOLOR,
+      stroke: BORDERCOLOR,
+      strokeWidth: 3,
+    });
+    this._representation = new Kinetic.Group();
+    this._representation.add(this._box);
+    return this._representation;
+  },
+
+  /**
+   * setCourses function sets the courses array to the passed in argument (from the SubPath
+   * /Path) and builds up the Pile visual object in preparation for rendering.
+   * @param {Array} courses the array of courses to be displayed in the Pile in descending
+   * order of their rating.
+   */
+  setCourses: function (courses) {
+
+  },
+
+  render: function (x, y) {
+    this._representation.position({
+      x: x,
+      y: y,
+    });
+    this._layer.add(this._representation);
+  },
+
+  pileDriver: function () {
+    this;
+  },
+
+};
+
+
+ursaMajor.SubPath.prototype = {
 
 }
