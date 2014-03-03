@@ -173,12 +173,17 @@ var ursaMajor = {
 
 ursaMajor.Course.prototype = {
   
+  /**
+   * __init function initializes this Course with the course that it holds and creates 
+   * the corresponding visual elements.
+   */
   __init: function(config) {
     for (var attr in config) {
       this[attr] = config[attr];
     }
     this.width = 40;
     this.height = 10;
+    this.layer = new Kinetic.Layer();
     // Graphic elements
     this._box = new Kinetic.Rect({
       width: this.width,
@@ -194,7 +199,27 @@ ursaMajor.Course.prototype = {
       fill: TEXTCOLOR,
       fontSize: TEXTSIZE,
       height: this.height,
-    })
+    });
+    this._representation = new Kinetic.Group({
+      draggable: true,
+  });
+    this._representation.add(this._box);
+    this._representation.add(this._text);
   },
+
+  /**
+   * render function adds this course to its layer at the proper coordinate ready to be
+   * added to the interface on the next redraw of the canvas.
+   * @param {Number} x the x-coordinate of the course box in the canvas
+   * @param  {Number} y the y-coordinate of the course box in the canvas
+   * @return {[type]}   [description]
+   */
+  render: function (x, y) {
+    this._representation.position({
+      x: x,
+      y: y,
+    });
+    this.layer.add(this._representation);
+  }
 
 }

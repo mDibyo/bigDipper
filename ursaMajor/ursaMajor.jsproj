@@ -62,7 +62,7 @@
     <Content Include="images\storelogo.scale-100.png" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
-    <Content Include="js\kinetic-v4.7.4.min.js" />
+    <Content Include="js\kinetic-v5.0.1.js" />
     <None Include="ursaMajor_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
