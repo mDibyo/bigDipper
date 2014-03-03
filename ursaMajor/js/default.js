@@ -18,7 +18,9 @@ var TEXTFONT = "Calibri",
   BGCOLOR = "white",
   TEXTCOLOR = "#8A8A8A",
   TEXTSIZE = 12,
-  BORDERCOLOR = "#BFBFBF";
+  BORDERCOLOR = "#BFBFBF",
+  BOXWIDTH = 40,
+  BOXHEIGHT = 10;
 
 // var ursaMajor = {};
 
@@ -80,6 +82,7 @@ var ursaMajor = {
    */
   Pile: function (config) {
     this.__init(config);
+    this.setCourses(config.courses);
   },
 
   /**
@@ -125,9 +128,7 @@ var ursaMajor = {
    * });
    */
   SubPath: function (config) {
-    for (var attr in config) {
-      this[attr] = config[attr];
-    }
+    this.__init(config);
   },
 
   /**
@@ -181,8 +182,8 @@ ursaMajor.Course.prototype = {
     for (var attr in config) {
       this[attr] = config[attr];
     }
-    this.width = 40;
-    this.height = 10;
+    this.width = BOXWIDTH;
+    this.height = BOXHEIGHT;
     // Graphic elements
     this._layer = null;
     this._box = new Kinetic.Rect({
@@ -237,10 +238,10 @@ ursaMajor.Pile.prototype = {
     for (var attr in config) {
       this[attr] = config[attr];
     }
-    this.width = 40;
+    this.width = BOXWIDTH;
     this.height = 120;
     // Graphic elements
-    this._layer = null;
+    this.layer = new Kinetic.Layer();
     this._box = new Kinetic.Rect({
       width: this.width,
       height: this.height,
@@ -254,21 +255,21 @@ ursaMajor.Pile.prototype = {
   },
 
   /**
-   * setCourses function sets the courses array to the passed in argument (from the SubPath
-   * /Path) and builds up the Pile visual object in preparation for rendering.
-   * @param {Array} courses the array of courses to be displayed in the Pile in descending
-   * order of their rating.
+   * render function adds all the courses and the pile itself to their proper coordinate ready
+   * to be added to the interface on the next redraw of the canvas.
+   * @param {Number} x the x-coordinate of the pile box in the canvas
+   * @param  {Number} y the y-coordinate of the pile box in the canvas
    */
-  setCourses: function (courses) {
-
-  },
-
   render: function (x, y) {
     this._representation.position({
       x: x,
       y: y,
     });
     this._layer.add(this._representation);
+    for (var i = 0; i < this.courses.length; i++) {
+      this.courses[i].layer = this.layer;
+      this.courses[i].render(x, y + i * BOXHEIGHT);
+    };
   },
 
   pileDriver: function () {
@@ -280,4 +281,10 @@ ursaMajor.Pile.prototype = {
 
 ursaMajor.SubPath.prototype = {
 
+  __init: function (config) {
+    for (var attr in config) {
+      this[attr] = config[attr];
+    }
+  }
+  
 }
