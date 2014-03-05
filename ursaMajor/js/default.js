@@ -281,6 +281,26 @@ ursaMajor.Pile.prototype = {
 
 ursaMajor.SubPath.prototype = {
 
+  /**
+   * __init function initializes the structure of the SubPath from the attributes passed into it 
+   * through config and constructs the corresponding visual elements.
+   * In the interface, the SubPath is represented as a tree with color-coded nodes representing
+   * different requirements. Courses can be dragged into the SubPath and will transform into a SubPath
+   * node. The SubPath also contains a name for it at the top.
+   * @param  {Object} config the set of courses, requirements and other attributes that make the SubPath object.
+   * @return {Kinetic.Group} the visual representation of the SubPath in the canvas
+   */
+  __init: function (config) {
+    for (var attr in config) {
+      this[attr] = config[attr];
+    }    
+  },
+}
+
+
+ursaMajor.Path.prototype = {
+
+  
   __init: function (config) {
     for (var attr in config) {
       this[attr] = config[attr];
