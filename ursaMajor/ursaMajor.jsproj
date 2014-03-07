@@ -64,6 +64,7 @@
     <Content Include="css\default.css" />
     <Content Include="js\kinetic-v5.0.1.intellisense.js" />
     <Content Include="js\kinetic-v5.0.1.js" />
+    <Content Include="js\script.js" />
     <None Include="ursaMajor_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
