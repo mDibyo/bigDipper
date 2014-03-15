@@ -2,3 +2,5 @@ LIst of image assets required
 
 - search (magnifying glass)
 - nodes (subpath) - theme colors
+- edges connecting nodes
+- 
