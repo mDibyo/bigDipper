@@ -50,12 +50,22 @@ $(document).ready(function() {
 		for (var i = 0; i < pile1.course.length; i++) {
 			var course = pile1.course[i];
 			$(searchresults).append(
-				"<div class='pileResult'>" + course.abbrName + "<br>" + course.courseTitle + "</div>"
+				"<div class='pileResult' id= '" + course.abbrName + "''>" + course.abbrName + "<br>" + course.courseTitle + "</div>"
 			);
 
 		};
 		
 	});
+	//$(".pileResult").click(function() {
+	//	for (var i = 0; i < pile1.course.length; i++) {
+	//		var course = pile1.course[i];
+	//		$(searchresults).append(
+	//			"<div class='pileResult' id= '" + course.abbrName+ "''>" + course.abbrName + "<br>" + course.courseTitle + "</div>"
+	//		);
+
+	//	};
+		
+	//});
 	/**
 	 * Counts the number of units in this list of courses.
 	 * @param {Array} the courses in this list.
