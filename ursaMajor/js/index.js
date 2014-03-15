@@ -24,15 +24,37 @@ $(document).ready(function() {
 			course1
 		]
 	});
+	var subpath1 = new ursaMajor.SubPath({
+		id: "subpath1",
+		displayName: "My favorite subpath",
+		major: "Computer Science",
+		requirements: {
+			breadth: {
+				artAndCulture: "PHILOS.49",
+				history: "PHILOS.25A",
+				internationalStudies: "POLSCI.5"
+			},
+			ac: "",
+			foreignLanguage: "GERMAN.R5A"
+		},
+		unitCount: 60,
+	});
 	var path1 = new ursaMajor.Path({
 		displayName: "Computer Science Path",
 		subPaths: [
-			A,
-			B
+			subpath1
 		],
-		unitCount: 0
+		unitCount: 60
 	});
 	$("#searchbar").click(function() {
+		for (var i = 0; i < pile1.course.length; i++) {
+			var course = pile1.course[i];
+			$(searchresults).append(
+				"<div class='pileResult'>" + course.abbrName + "<br>" + course.courseTitle + "</div>"
+			);
+
+		};
+		
 	});
 	/**
 	 * Counts the number of units in this list of courses.
@@ -44,6 +66,7 @@ $(document).ready(function() {
 		for (var i = 0; i < courseList.length; i++) {
 			units += courseList[i].units
 		}
+		return units;
 	}
 
 
