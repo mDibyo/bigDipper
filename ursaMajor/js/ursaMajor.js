@@ -72,7 +72,7 @@ var ursaMajor = {
    */
   Pile: function (config) {
     this.__init(config);
-    this.setCourses(config.courses);
+    //this.setCourses(config.courses);
   },
  
   /**
