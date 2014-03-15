@@ -186,11 +186,12 @@ ursaMajor.Course.prototype = {
    * @param  {Number} y the y-coordinate of the course box in the canvas
    */
   render: function (x, y) {
-    this._representation.position({
-      x: x,
-      y: y,
-    });
-    this.layer.add(this._representation);
+    // this._representation.position({
+    //   x: x,
+    //   y: y,
+    // });
+    // this.layer.add(this._representation);
+    var rep = ""
   },
  
 }
