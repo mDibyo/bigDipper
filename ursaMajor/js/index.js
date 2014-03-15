@@ -1,5 +1,5 @@
-$(document).ready(function(){
-	var ursaMajor = new ursaMajor();
+$(document).ready(function() {
+	//var ursaMajor = new ursaMajor();
 	var course1 = new ursaMajor.Course({
 		id: "COMPSCI.169",
 		abbrName: "CS 169",
@@ -19,14 +19,32 @@ $(document).ready(function(){
 			"Sen",
 		],		
 	});
-	var pile = new ursaMajor.Pile({
+	var pile1 = new ursaMajor.Pile({
 		course: [
 			course1
 		]
 	});
-	$("#searchbar").click(function() {
-		$("#searchresults").append()
+	var path1 = new ursaMajor.Path({
+		displayName: "Computer Science Path",
+		subPaths: [
+			A,
+			B
+		],
+		unitCount: 0
 	});
+	$("#searchbar").click(function() {
+	});
+	/**
+	 * Counts the number of units in this list of courses.
+	 * @param {Array} the courses in this list.
+	 * returns number of units. 
+	 */
+	var countUnit = function (courseList) {
+		units = 0;
+		for (var i = 0; i < courseList.length; i++) {
+			units += courseList[i].units
+		}
+	}
 
 
 })
