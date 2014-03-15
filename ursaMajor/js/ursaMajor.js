@@ -1,6 +1,4 @@
-function ursaMajor() {
- 
-}
+function ursaMajor() { }
  
 /**
  * Global variables which will be used throughout the program and can be changed
@@ -16,7 +14,7 @@ var TEXTFONT = "Calibri",
  
 // var ursaMajor = {};
  
-ursaMajor = {
+var ursaMajor = {
  
   /**
    * Course constructor. Course represents each course. They are represented as
@@ -187,13 +185,14 @@ ursaMajor.Course.prototype = {
    * @param {Number} x the x-coordinate of the course box in the canvas
    * @param  {Number} y the y-coordinate of the course box in the canvas
    */
-  render: function (x, y) {
+  renderPile: function () {
     // this._representation.position({
     //   x: x,
     //   y: y,
     // });
     // this.layer.add(this._representation);
-    var rep = ""
+    var rep = "";
+    return  rep;
   },
  
 }
@@ -213,7 +212,18 @@ ursaMajor.Pile.prototype = {
     }
     this.width = BOXWIDTH;
     this.height = 120;
-    return this;
+    // Graphic elements
+    this.layer = new Kinetic.Layer();
+    this._box = new Kinetic.Rect({
+      width: this.width,
+      height: this.height,
+      fill: BGCOLOR,
+      stroke: BORDERCOLOR,
+      strokeWidth: 3,
+    });
+    this._representation = new Kinetic.Group();
+    this._representation.add(this._box);
+    return this._representation;
   },
  
   /**
