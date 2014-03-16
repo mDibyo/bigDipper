@@ -9,8 +9,8 @@ var TEXTFONT = "Calibri",
   TEXTCOLOR = "#8A8A8A",
   TEXTSIZE = 12,
   BORDERCOLOR = "#BFBFBF",
-  BOXWIDTH = 40,
-  BOXHEIGHT = 10;
+  BOXWIDTH = 200,
+  BOXHEIGHT = 40;
  
 // var ursaMajor = {};
  
@@ -175,9 +175,6 @@ ursaMajor.Course.prototype = {
     }
     this.width = BOXWIDTH;
     this.height = BOXHEIGHT;
-    // Graphic elements
-    this._layer = null;
-    return this;
   },
  
   /**
@@ -197,8 +194,8 @@ ursaMajor.Course.prototype = {
     });
     // Representation
     var rep = "";
-    rep += "<div class='pileResult' id='" + this.abbrName + "'>" + this.abbrName;
-    rep += "<br>" + this.courseTitle + "</div>";
+    rep += "<div class='pileResult' id='" + this.abbrName + "' style='width:" + BOXWIDTH + "px; height:" + BOXHEIGHT + "px;'>";
+    rep += this.abbrName + "<br>" + this.courseTitle + "</div>";
     return rep + this.renderTooltip();
   },
 
