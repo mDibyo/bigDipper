@@ -195,13 +195,15 @@ ursaMajor.Course.prototype = {
     // Representation
     var rep = "";
     rep += "<div class='pileResult' id='" + this.abbrName + "' style='width:" + BOXWIDTH + "px; height:" + BOXHEIGHT + "px;'>";
-    rep += this.abbrName + "<br>" + this.courseTitle + "</div>";
-    return rep + this.renderTooltip();
+    rep += this.abbrName + "<br>" + this.courseTitle;
+    rep += this.renderTooltip();
+    rep += "</div>";
+    return rep;
   },
 
   renderTooltip: function () {
     var rep = "";
-    rep += "<div class='courseTooltip' id='" + this.abbrName + "_hover' style>";
+    rep += "<div class='courseTooltip' id='" + this.abbrName + "_hover' style='position:absolute;'>";
     if (this.abbrName !== undefined) {
       rep += "<br><b>Course: </b>" + this.abbrName;
     }
