@@ -14,9 +14,10 @@ body {
 }
 
 #container {
-    width:90%;
+    position: relative;
+    width:90% !important;
     margin: auto;
-    border: 1px 0 solid #000000;
+    border: 0px 0 solid #000000;
 }
 
 h1 {
@@ -42,30 +43,67 @@ h4 {
     color: #FFFFFF;
     background: #EB6841;
     padding: 10px;
-}    
+}   
 
 #header {
     position: fixed;
-    margin: 10px;
+    margin-top: 0px;
+    top: 0px;
+    margin-right:;
+   /* margin: 10px;*/
+    width: 100%;
+    z-index:1;
+    background: #00A0B0;
+}
+
+#header h1 {
+    float: left;
 }
 
 #nav {
     position: fixed;
-    margin: 10px;
+    /*margin-top: 80px;*/
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    float: right;
+    text-align:right;
+    padding-right: 10px;
+}
+
+
+
+#nav a {
+    text-align: center;
+}
+
+.searcharea {
+    position: relative;
+    background: #EDC951;
+    width: 25%;
+    top: 100px;
 }
 
 .search {
     position: relative;
-    float: left;
+    /*float: left;*/
     margin: auto;
-    width: 25%;
     font-family: FontAwesome;
+    /*left: -10px;
+    width:130%;*/
 }
 .searchtext {
     text-shadow: 0 1px 3px #000000;
     text-align: center;
 }
 
+.searchresults {
+    background: #EDC951;
+    width: 25%;
+    padding: 10px;
+}
 
 
 input {
@@ -80,19 +118,26 @@ input {
 }
 
 @media (max-width: 700px) {
+    .search {
+        min-width: 20px;
+    }
     input[name=search] {
         min-width: 30px;
         max-width: 90px;
         /*float:right;
-        margin: auto;*/
+        margin: auto;*/   
     }
 }
 
 @media (min-width: 700px) {
+    .search {
+        width: 100%;
+    }
     input[name=search] {
         width: 70%;
         /*float:right;
         margin: auto;*/
     }
+    
 }
 
