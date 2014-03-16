@@ -46,7 +46,7 @@ $(document).ready(function() {
 		],
 		unitCount: 60
 	});
-	$(".search").click(function() {
+	$("#searchbar").click(function() {
 		for (var i = 0; i < pile1.course.length; i++) {
 			var course = pile1.course[i];
 			$(searchresults).append(

@@ -34,7 +34,8 @@ var ursaMajor = {
    * @param {Number} [config.units] the number of units that this course is worth
    * @param {Array}  [config.professors] optional the professors who teach this course
    * @param {Number|Object} [config.ratings] optional rating/ratings posted by other students
- 
+   * !!! change Course.renderTooltip() when changing the prototype of this function !!!
+
    * @example
    * var course = new ursaMajor.Course({
    *   id: "COMPSCI.169",
@@ -186,14 +187,39 @@ ursaMajor.Course.prototype = {
    * @param  {Number} y the y-coordinate of the course box in the canvas
    */
   renderPile: function () {
-    // this._representation.position({
-    //   x: x,
-    //   y: y,
-    // });
-    // this.layer.add(this._representation);
+    // Mouseevents
+    $("#" + this.abbrName + "_hover").on()
+    // Representation
     var rep = "";
-    return  rep;
+    rep += "<div class='pileResult' id='" + this.abbrName + "'>" + this.abbrName;
+    rep += "<br>" + this.courseTitle + "</div>";
+    return rep + this.renderTooltip();
   },
+
+  renderTooltip: function () {
+    var rep = "";
+    rep += "<div class='courseTooltip' id='" + this.abbrName + "_hover'>";
+    if (this.abbrName !== undefined) {
+      rep += "<br><b>Course: </b>" + this.abbrName;
+    }
+    if (this.courseTitle !== undefined) {
+      rep += " - " + this.courseTitle;
+    }
+    if (this.department !== undefined) {
+      rep += "<br><b>Department: </b>" + this.department;
+    }
+    if (this.description !== undefined) {
+      rep += "<br>" + this.description;
+    }
+    if (this.prereqs !== undefined) {
+      rep += "<br><b>Pre-requisites: </b>" + this.prereqs[0];
+      for (var i = 1; i < this.prereqs.length; i++) {
+        rep += ", " + this.prereqs[i];
+      }
+    }
+    if ()
+    rep += "/div>";
+  }
  
 }
  
@@ -213,17 +239,18 @@ ursaMajor.Pile.prototype = {
     this.width = BOXWIDTH;
     this.height = 120;
     // Graphic elements
-    this.layer = new Kinetic.Layer();
-    this._box = new Kinetic.Rect({
-      width: this.width,
-      height: this.height,
-      fill: BGCOLOR,
-      stroke: BORDERCOLOR,
-      strokeWidth: 3,
-    });
-    this._representation = new Kinetic.Group();
-    this._representation.add(this._box);
-    return this._representation;
+    // this.layer = new Kinetic.Layer();
+    // this._box = new Kinetic.Rect({
+    //   width: this.width,
+    //   height: this.height,
+    //   fill: BGCOLOR,
+    //   stroke: BORDERCOLOR,
+    //   strokeWidth: 3,
+    // });
+    // this._representation = new Kinetic.Group();
+    // this._representation.add(this._box);
+    // return this._representation;
+    return this;
   },
  
   /**
