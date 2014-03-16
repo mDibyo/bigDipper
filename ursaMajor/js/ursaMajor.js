@@ -1,6 +1,4 @@
-function ursaMajor() {
- 
-}
+function ursaMajor() { }
  
 /**
  * Global variables which will be used throughout the program and can be changed
@@ -11,12 +9,12 @@ var TEXTFONT = "Calibri",
   TEXTCOLOR = "#8A8A8A",
   TEXTSIZE = 12,
   BORDERCOLOR = "#BFBFBF",
-  BOXWIDTH = 40,
-  BOXHEIGHT = 10;
+  BOXWIDTH = 200,
+  BOXHEIGHT = 40;
  
 // var ursaMajor = {};
  
-ursaMajor = {
+var ursaMajor = {
  
   /**
    * Course constructor. Course represents each course. They are represented as
@@ -36,7 +34,8 @@ ursaMajor = {
    * @param {Number} [config.units] the number of units that this course is worth
    * @param {Array}  [config.professors] optional the professors who teach this course
    * @param {Number|Object} [config.ratings] optional rating/ratings posted by other students
- 
+   * !!! change Course.renderTooltip() when changing the prototype of this function !!!
+
    * @example
    * var course = new ursaMajor.Course({
    *   id: "COMPSCI.169",
@@ -176,9 +175,9 @@ ursaMajor.Course.prototype = {
     }
     this.width = BOXWIDTH;
     this.height = BOXHEIGHT;
-    // Graphic elements
-    this._layer = null;
-    return this;
+    console.log(this.id);
+    this.cssId = this.id.replace('.', '_');
+    console.log("ID", this.cssId)
   },
  
   /**
@@ -187,13 +186,95 @@ ursaMajor.Course.prototype = {
    * @param {Number} x the x-coordinate of the course box in the canvas
    * @param  {Number} y the y-coordinate of the course box in the canvas
    */
-  render: function (x, y) {
-    this._representation.position({
-      x: x,
-      y: y,
+  renderPile: function () {
+    // Mouseevents
+    console.log("1");
+    console.log("2"); /*
+    $('#' + this.abbrName).mouseenter(function () {
+      $('#' + this.abbrName + '_hover').style.display = 'block';
+      console.log("hi");
     });
-    this.layer.add(this._representation);
+    $('#' + this.abbrName).mouseleave(function () {
+      $('#' + this.abbrName + '_hover').style.display = 'none';
+      console.log("yoo");
+    }); */
+    // Representation
+    var rep = "";
+    console.log("5");
+    rep += "<div class='pileResult' id='" + this.cssId + "' style='width:" + BOXWIDTH + "px; height:" + BOXHEIGHT + "px;'>";
+    rep += this.cssId + "<br>" + this.courseTitle;
+    rep += this.renderTooltip();
+    rep += "</div>";
+    return rep;
   },
+
+  addMouseEvents: function () {
+  	var that = this;
+  	console.log("starting addmouse event");
+  	console.log('#' + that.cssId);
+  	$('#' + that.cssId).on('mouseover', function () {
+      $('#' + that.cssId + '_hover').show();
+      console.log("hi");
+    });
+  	$('#' + that.cssId).mouseenter(function () {
+      $('#' + that.cssId + '_hover').show();
+      console.log("hi");
+    });
+    $('#' + that.cssId).mouseleave(function () {
+      $('#' + that.cssId + '_hover').hide();
+      console.log("yoo");
+    });
+    console.log("hiend", this);
+  },
+
+  renderTooltip: function () {
+    var rep1 = "";
+    console.log("1a");
+    rep1 += "<div class='courseTooltip' id='" + this.cssId + "_hover' style='position:absolute; display:none;'>";
+    if (this.cssId !== undefined) {
+      rep1 += "<br><b>Course: </b>" + this.cssId;
+    }
+    if (this.courseTitle !== undefined) {
+      rep1 += " - " + this.courseTitle;
+    }
+    if (this.department !== undefined) {
+      rep1 += "<br><b>Department: </b>" + this.department;
+    }
+    console.log('2a');
+    if (this.description !== undefined) {
+      rep1 += "<br>" + this.description;
+    }
+    if (this.units !== undefined) {
+      rep1 += "<br><b>Units: </b>" + this.units;
+    }
+    rep1 += "<br><b>Pre-requisites: </b>";
+    if (this.prereqs !== undefined) {
+      rep1 += this.prereqs[0];
+      for (var i = 1; i < this.prereqs.length; i++) {
+        rep1 += ", " + this.prereqs[i];
+      }
+    } else {
+      rep1 += "-";
+    }
+    rep1 += "<br><b>Pre-requisites of: </b>";
+    if (this.prereqsOf !== undefined) {
+      rep1 += this.prereqsOf[0];
+      for (var i = 1; i < this.prereqsOf.length; i++) {
+        rep1 += ", " + this.prereqsOf[i];
+      }
+    } else {
+      rep1 += "-";
+    }
+    if (this.professors !== undefined) {
+      rep1 += "<br><b>Professors: </b>" + this.professors[0];
+      for (var i = 1; i < this.professors.length; i++) {
+        rep1 += ", " + this.professors[i];
+      }
+    }
+    rep1 += "/div>";
+    return rep1;
+  }
+
  
 }
  
@@ -212,6 +293,18 @@ ursaMajor.Pile.prototype = {
     }
     this.width = BOXWIDTH;
     this.height = 120;
+    // Graphic elements
+    // this.layer = new Kinetic.Layer();
+    // this._box = new Kinetic.Rect({
+    //   width: this.width,
+    //   height: this.height,
+    //   fill: BGCOLOR,
+    //   stroke: BORDERCOLOR,
+    //   strokeWidth: 3,
+    // });
+    // this._representation = new Kinetic.Group();
+    // this._representation.add(this._box);
+    // return this._representation;
     return this;
   },
  

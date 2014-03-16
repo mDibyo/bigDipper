@@ -184,28 +184,6 @@ ursaMajor.Course.prototype = {
     }
     this.width = BOXWIDTH;
     this.height = BOXHEIGHT;
-    // Graphic elements
-    //this._layer = null;
-    //this._box = new Kinetic.Rect({
-    //  width: this.width,
-    //  height: this.height,
-    //  fill: BGCOLOR,
-    //  stroke: BORDERCOLOR,
-    //  strokeWidth: 3,
-    //});
-    //this._text = new Kinetic.Text({
-    //  text: this.abbrName,
-    //  align: 'center',
-    //  fontFamily: TEXTFONT,
-    //  fill: TEXTCOLOR,
-    //  fontSize: TEXTSIZE,
-    //  height: this.height,
-    //});
-    //this._representation = new Kinetic.Group({
-    //  draggable: true,
-    //});
-    //this._representation.add(this._box);
-    //this._representation.add(this._text);
     return this._representation;
   },
 
@@ -215,12 +193,9 @@ ursaMajor.Course.prototype = {
    * @param {Number} x the x-coordinate of the course box in the canvas
    * @param  {Number} y the y-coordinate of the course box in the canvas
    */
-  render: function (x, y) {
-    this._representation.position({
-      x: x,
-      y: y,
-    });
-    this.layer.add(this._representation);
+  renderPile: function (x, y) {
+    var rep = "";
+    
   },
 
 }
@@ -240,17 +215,6 @@ ursaMajor.Pile.prototype = {
     }
     this.width = BOXWIDTH;
     this.height = 120;
-    // Graphic elements
-    //this.layer = new Kinetic.Layer();
-    //this._box = new Kinetic.Rect({
-    //  width: this.width,
-    //  height: this.height,
-    //  fill: BGCOLOR,
-    //  stroke: BORDERCOLOR,
-    //  strokeWidth: 3,
-    //});
-    //this._representation = new Kinetic.Group();
-    //this._representation.add(this._box);
     return this._representation;
   },
 

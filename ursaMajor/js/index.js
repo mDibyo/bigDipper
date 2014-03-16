@@ -5,7 +5,7 @@ $(document).ready(function() {
 		abbrName: "CS 169",
 		courseTitle: "Software Engineering",
 		department: "Computer Science",
-		description: "Ideas and techniques for designing ...",
+		description: "Ideas and techniques for designing software that helps no one...",
 		prereqs: [
 			"COMPSCI.61B",
 			"COMPSCI.61C",
@@ -46,24 +46,23 @@ $(document).ready(function() {
 		],
 		unitCount: 60
 	});
-	$(".search").click(function() {
+	$("#searchbar").click(function() {
 		for (var i = 0; i < pile1.course.length; i++) {
 			var course = pile1.course[i];
-			$(searchresults).append(
-				"<div class='pileResult' id= '" + course.abbrName + "''>" + course.abbrName + "<br>" + course.courseTitle + "</div>"
+			$("#searchresults").append(
+				// "<div class='pileResult' id= '" + course.abbrName + "''>" + course.abbrName + "<br>" + course.courseTitle + "</div>"
+				course.renderPile()
 			);
-
+			course.addMouseEvents();
+			console.log(course);
 		};
 		
 	});
-	//$(".pileResult").click(function() {
-	//	for (var i = 0; i < pile1.course.length; i++) {
-	//		var course = pile1.course[i];
-	//		$(searchresults).append(
-	//			"<div class='pileResult' id= '" + course.abbrName+ "''>" + course.abbrName + "<br>" + course.courseTitle + "</div>"
-	//		);
-
-	//	};
+	/*
+	$(".courseTooltip").mouseenter(function () {
+      this.style.display = 'block';
+      console.log("hi");
+    }); */
 		
 	//});
 	/**
