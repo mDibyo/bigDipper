@@ -108,4 +108,9 @@ input {
     font-family: FontAwesome;
 
 }
+.courseTooltip {
+    border: 2px solid #d0d0ff;
+    background-color: #ffffff;
+    z-index: 100;
+}
 

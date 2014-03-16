@@ -208,7 +208,7 @@ ursaMajor.Course.prototype = {
     return rep;
   },
 
-  addMouseEvents: function() {
+  addMouseEvents: function () {
   	var that = this;
   	console.log("starting addmouse event");
   	console.log('#' + that.cssId);

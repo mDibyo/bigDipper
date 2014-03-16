@@ -5,7 +5,7 @@ $(document).ready(function() {
 		abbrName: "CS 169",
 		courseTitle: "Software Engineering",
 		department: "Computer Science",
-		description: "Ideas and techniques for designing ...",
+		description: "Ideas and techniques for designing software that helps no one...",
 		prereqs: [
 			"COMPSCI.61B",
 			"COMPSCI.61C",
