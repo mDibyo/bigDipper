@@ -83,6 +83,7 @@ h4 {
     background: #EDC951;
     width: 25%;
     top: 100px;
+    z-index: 100;
 }
 
 .search {
