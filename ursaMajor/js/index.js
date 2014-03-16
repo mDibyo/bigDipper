@@ -49,21 +49,20 @@ $(document).ready(function() {
 	$("#searchbar").click(function() {
 		for (var i = 0; i < pile1.course.length; i++) {
 			var course = pile1.course[i];
-			$(searchresults).append(
-				"<div class='pileResult' id= '" + course.abbrName + "''>" + course.abbrName + "<br>" + course.courseTitle + "</div>"
+			$("#searchresults").append(
+				// "<div class='pileResult' id= '" + course.abbrName + "''>" + course.abbrName + "<br>" + course.courseTitle + "</div>"
+				course.renderPile()
 			);
-
+			course.addMouseEvents();
+			console.log(course);
 		};
 		
 	});
-	//$(".pileResult").click(function() {
-	//	for (var i = 0; i < pile1.course.length; i++) {
-	//		var course = pile1.course[i];
-	//		$(searchresults).append(
-	//			"<div class='pileResult' id= '" + course.abbrName+ "''>" + course.abbrName + "<br>" + course.courseTitle + "</div>"
-	//		);
-
-	//	};
+	/*
+	$(".courseTooltip").mouseenter(function () {
+      this.style.display = 'block';
+      console.log("hi");
+    }); */
 		
 	//});
 	/**

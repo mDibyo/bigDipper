@@ -175,6 +175,9 @@ ursaMajor.Course.prototype = {
     }
     this.width = BOXWIDTH;
     this.height = BOXHEIGHT;
+    console.log(this.id);
+    this.cssId = this.id.replace('.', '_');
+    console.log("ID", this.cssId)
   },
  
   /**
@@ -185,66 +188,93 @@ ursaMajor.Course.prototype = {
    */
   renderPile: function () {
     // Mouseevents
-    $("#" + this.abbrName + "_hover").on('mousestart');
-    $('#' + this.abbrName).mouseover(function () {
+    console.log("1");
+    console.log("2"); /*
+    $('#' + this.abbrName).mouseenter(function () {
       $('#' + this.abbrName + '_hover').style.display = 'block';
+      console.log("hi");
     });
-    $('#' + this.abbrName).mouseover(function () {
+    $('#' + this.abbrName).mouseleave(function () {
       $('#' + this.abbrName + '_hover').style.display = 'none';
-    });
+      console.log("yoo");
+    }); */
     // Representation
     var rep = "";
-    rep += "<div class='pileResult' id='" + this.abbrName + "' style='width:" + BOXWIDTH + "px; height:" + BOXHEIGHT + "px;'>";
-    rep += this.abbrName + "<br>" + this.courseTitle;
+    console.log("5");
+    rep += "<div class='pileResult' id='" + this.cssId + "' style='width:" + BOXWIDTH + "px; height:" + BOXHEIGHT + "px;'>";
+    rep += this.cssId + "<br>" + this.courseTitle;
     rep += this.renderTooltip();
     rep += "</div>";
     return rep;
   },
 
+  addMouseEvents: function() {
+  	var that = this;
+  	console.log("starting addmouse event");
+  	console.log('#' + that.cssId);
+  	$('#' + that.cssId).on('mouseover', function () {
+      $('#' + that.cssId + '_hover').show();
+      console.log("hi");
+    });
+  	$('#' + that.cssId).mouseenter(function () {
+      $('#' + that.cssId + '_hover').show();
+      console.log("hi");
+    });
+    $('#' + that.cssId).mouseleave(function () {
+      $('#' + that.cssId + '_hover').hide();
+      console.log("yoo");
+    });
+    console.log("hiend", this);
+  },
+
   renderTooltip: function () {
-    var rep = "";
-    rep += "<div class='courseTooltip' id='" + this.abbrName + "_hover' style='position:absolute;'>";
-    if (this.abbrName !== undefined) {
-      rep += "<br><b>Course: </b>" + this.abbrName;
+    var rep1 = "";
+    console.log("1a");
+    rep1 += "<div class='courseTooltip' id='" + this.cssId + "_hover' style='position:absolute; display:none;'>";
+    if (this.cssId !== undefined) {
+      rep1 += "<br><b>Course: </b>" + this.cssId;
     }
     if (this.courseTitle !== undefined) {
-      rep += " - " + this.courseTitle;
+      rep1 += " - " + this.courseTitle;
     }
     if (this.department !== undefined) {
-      rep += "<br><b>Department: </b>" + this.department;
+      rep1 += "<br><b>Department: </b>" + this.department;
     }
+    console.log('2a');
     if (this.description !== undefined) {
-      rep += "<br>" + this.description;
+      rep1 += "<br>" + this.description;
     }
     if (this.units !== undefined) {
-      rep += "<br><b>Units: </b>" + this.units;
+      rep1 += "<br><b>Units: </b>" + this.units;
     }
-    rep += "<br><b>Pre-requisites: </b>";
+    rep1 += "<br><b>Pre-requisites: </b>";
     if (this.prereqs !== undefined) {
-      rep += this.prereqs[0];
+      rep1 += this.prereqs[0];
       for (var i = 1; i < this.prereqs.length; i++) {
-        rep += ", " + this.prereqs[i];
+        rep1 += ", " + this.prereqs[i];
       }
     } else {
-      rep += "-";
+      rep1 += "-";
     }
-    rep += "<br><b>Pre-requisites of: </b>";
+    rep1 += "<br><b>Pre-requisites of: </b>";
     if (this.prereqsOf !== undefined) {
-      rep += this.prereqsOf[0];
+      rep1 += this.prereqsOf[0];
       for (var i = 1; i < this.prereqsOf.length; i++) {
-        rep += ", " + this.prereqsOf[i];
+        rep1 += ", " + this.prereqsOf[i];
       }
     } else {
-      rep += "-";
+      rep1 += "-";
     }
     if (this.professors !== undefined) {
-      rep += "<br><b>Professors: </b>" + this.professors[0];
-      for (var i = 1; i < this.prereqsOf.length; i++) {
-        rep += ", " + this.prereqsOf[i];
+      rep1 += "<br><b>Professors: </b>" + this.professors[0];
+      for (var i = 1; i < this.professors.length; i++) {
+        rep1 += ", " + this.professors[i];
       }
     }
-    rep += "/div>";
+    rep1 += "/div>";
+    return rep1;
   }
+
  
 }
  
