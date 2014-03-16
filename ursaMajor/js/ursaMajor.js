@@ -188,7 +188,13 @@ ursaMajor.Course.prototype = {
    */
   renderPile: function () {
     // Mouseevents
-    $("#" + this.abbrName + "_hover").on()
+    $("#" + this.abbrName + "_hover").on('mousestart');
+    $('#' + this.abbrName).mouseover(function () {
+      $('#' + this.abbrName + '_hover').style.display = 'block';
+    });
+    $('#' + this.abbrName).mouseover(function () {
+      $('#' + this.abbrName + '_hover').style.display = 'none';
+    });
     // Representation
     var rep = "";
     rep += "<div class='pileResult' id='" + this.abbrName + "'>" + this.abbrName;
@@ -198,7 +204,7 @@ ursaMajor.Course.prototype = {
 
   renderTooltip: function () {
     var rep = "";
-    rep += "<div class='courseTooltip' id='" + this.abbrName + "_hover'>";
+    rep += "<div class='courseTooltip' id='" + this.abbrName + "_hover' style>";
     if (this.abbrName !== undefined) {
       rep += "<br><b>Course: </b>" + this.abbrName;
     }
@@ -211,13 +217,33 @@ ursaMajor.Course.prototype = {
     if (this.description !== undefined) {
       rep += "<br>" + this.description;
     }
+    if (this.units !== undefined) {
+      rep += "<br><b>Units: </b>" + this.units;
+    }
+    rep += "<br><b>Pre-requisites: </b>";
     if (this.prereqs !== undefined) {
-      rep += "<br><b>Pre-requisites: </b>" + this.prereqs[0];
+      rep += this.prereqs[0];
       for (var i = 1; i < this.prereqs.length; i++) {
         rep += ", " + this.prereqs[i];
       }
+    } else {
+      rep += "-";
     }
-    if ()
+    rep += "<br><b>Pre-requisites of: </b>";
+    if (this.prereqsOf !== undefined) {
+      rep += this.prereqsOf[0];
+      for (var i = 1; i < this.prereqsOf.length; i++) {
+        rep += ", " + this.prereqsOf[i];
+      }
+    } else {
+      rep += "-";
+    }
+    if (this.professors !== undefined) {
+      rep += "<br><b>Professors: </b>" + this.professors[0];
+      for (var i = 1; i < this.prereqsOf.length; i++) {
+        rep += ", " + this.prereqsOf[i];
+      }
+    }
     rep += "/div>";
   }
  
