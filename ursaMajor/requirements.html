@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html data-ng-app="ursaMajor">
+	<head>
+		<title>ursaMajor</title>
+		<link rel="stylesheet" type="text/css" href="css/req.css">
+	</head>
 	<body>
 		<div id="pile" data-ng-controller="PileController">
 			<div id="searchbar">
 			</div>
 			<div id="coursePile">
 				<div class="course" ng-repeat="course in displayedCourses">
-					
+					{{ course.id }}
+					<br />
+					{{ course.courseTitle }}
 				</div>
 			</div>
 		</div>

@@ -202,7 +202,7 @@ ursaMajor.Course.prototype = {
     var rep = "";
     console.log("5");
     rep += "<div class='pileResult' id='" + this.cssId + "' style='width:" + BOXWIDTH + "px; height:" + BOXHEIGHT + "px;'>";
-    rep += this.cssId + "<br>" + this.courseTitle;
+    rep += this.id + "<br>" + this.courseTitle;
     rep += this.renderTooltip();
     rep += "</div>";
     return rep;
