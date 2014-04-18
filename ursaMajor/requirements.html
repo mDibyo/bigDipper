@@ -9,10 +9,10 @@
 		<div id="pile" data-ng-controller="PileController">
 
 			<div id="searchbar">
-				<input id="searchBox" type="text" data-ng-model="courseSearch" data-ng-keypress="searchForCourse()" />
+				<input id="searchbox" type="text" data-ng-model="courseSearch" data-ng-keypress="searchForCourse()" />
 			</div>
 
-			<div id="coursePile">
+			<div id="coursepile">
 				<div class="course" data-ng-repeat="course in displayedCourses">
 					<!-- Course Representation -->
 						{{ course.id }}
@@ -24,6 +24,9 @@
 		</div>
 		<div id="path" data-ng-controller="PathController">
 			
+			<div id="pathtitle" data-ng-mouseenter="title.mouseenter()" data-ng-mouseleave="title.mouseleave()">
+				{{ title.current }}
+				<input id="pathtitleenter" data-ng-if="title.mouseover" data-ng-model="title.current" />
 		</div>
 		<script type="text/javascript" src="js/angular.min.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>

@@ -42,4 +42,13 @@ ursaMajor.controller('PathController', function($scope, requirementsFactory) {
 
 	$scope.requirements = [];
 
+	$scope.title = {}
+	$scope.title.mouseover = false;
+	$scope.title.mouseenter = function() {
+		$scope.title.mouseover = true;
+	}
+	$scope.title.mouseleave = function() {
+		$scope.title.mouseover = false;
+	}
+
 })
