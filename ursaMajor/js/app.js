@@ -22,8 +22,12 @@ ursaMajor.factory('coursesFactory', function() {
 	return factory;
 })
 
-ursaMajor.factory('userCourses', function() {
+ursaMajor.factory('userFactory', function() {
 
+	var factory;
+	factory.user = // TODO: return the user object with his list of paths and courses
+	
+	return factory;
 })
 
 ursaMajor.controller('PileController', function($scope, coursesFactory) {
@@ -38,17 +42,19 @@ ursaMajor.controller('PileController', function($scope, coursesFactory) {
 
 })
 
-ursaMajor.controller('PathController', function($scope, requirementsFactory) {
+ursaMajor.controller('PathController', function($scope, requirementsFactory, userFactory) {
 
 	$scope.requirements = [];
 
 	$scope.title = {}
+	$scope.title.current = userFactory.path.title;
 	$scope.title.mouseover = false;
 	$scope.title.mouseenter = function() {
 		$scope.title.mouseover = true;
 	}
 	$scope.title.mouseleave = function() {
 		$scope.title.mouseover = false;
+		userFactory.title = $scope.title.current;
 	}
 
 })
