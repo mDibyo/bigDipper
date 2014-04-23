@@ -19,6 +19,11 @@ ursaMajor.factory('coursesFactory', function() {
 		return null;
 	}
 
+	factory.getMajor = function(major) {
+		// TODO: return a object of requirements for the given major
+		return null;
+	}
+
 	return factory;
 })
 
@@ -61,6 +66,7 @@ ursaMajor.controller('PathController', function($scope, requirementsFactory, use
 	// Sub-Path
 	$scope.subpaths = [];
 	$scope.subpaths.addSubpath = function(major) {
+		$scope.subpaths.append(requirementsFactory.getMajor(major));
 		
 	}
 

@@ -29,7 +29,7 @@
 				<input id="pathtitleenter" data-ng-if="title.mouseover" data-ng-model="title.current" />
 			</div>
 
-			<div class="requirements" data-ng-repeat="requirement in requirements">
+			<div class="requirements" data-ng-repeat="requirement in subpaths[0].equirements">
 				<div class="courseforrequirement" data-ng-repeat="course in requirement.courses">
 					<!-- Path node representation -->
 					{{ course.id }}
