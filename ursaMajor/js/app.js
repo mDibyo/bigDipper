@@ -46,6 +46,7 @@ ursaMajor.controller('PathController', function($scope, requirementsFactory, use
 
 	$scope.requirements = [];
 
+	// Title
 	$scope.title = {}
 	$scope.title.current = userFactory.path.title;
 	$scope.title.mouseover = false;
@@ -55,6 +56,12 @@ ursaMajor.controller('PathController', function($scope, requirementsFactory, use
 	$scope.title.mouseleave = function() {
 		$scope.title.mouseover = false;
 		userFactory.title = $scope.title.current;
+	}
+
+	// Sub-Path
+	$scope.subpaths = [];
+	$scope.subpaths.addSubpath = function(major) {
+		
 	}
 
 })
